@@ -1,4 +1,4 @@
 
 
 all:
-	ls
+	python test.py
