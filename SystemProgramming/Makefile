@@ -1,4 +1,10 @@
 
+all: displaay
+	
+	
 
-all:
+displaay:
+		touch text.txt
+
+test:
 	@python test.py
