@@ -1,10 +1,25 @@
 
-all: displaay
-	
+all: 
+	helo
 	
 
-displaay:
-		touch text.txt
+makefilee:
+	mkdir hope\test
 
-test:
+lsdir:
+	ls
+
+touchfile:
+	touch index.html
+
+cddirr:
+	cd hope
+
+pwd:
+	pwd
+
+rmdirr:
+	rmdir hope
+
+runpy:
 	@python test.py
