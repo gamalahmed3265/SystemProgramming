@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <vector>
-
+#pragma warning(disable : 4996)
 typedef struct node {
 	char*  val;
 	struct node* childPtr;
@@ -22,8 +22,8 @@ NODE* creatNode(char*  val)
 		results->sibingPtr = NULL;
 		/*printf("val is %s\n", val);
 		printf("spa is %s\n", spa);*/
-		results->val = val;
-		//results->val = AppendStrings(val, spa);
+		//results->val = val;
+		results->val = strcat(val, spa);
 	}
 	return results;
 }
@@ -63,6 +63,27 @@ NODE* sibingInsert(NODE* node)
 	node->sibingPtr = sibingInsert(node->sibingPtr);
 
 	return node;
+}
+
+NODE* insert(NODE* parent, char* value) {
+	NODE* newNode;
+	newNode = creatNode(value);
+
+	if (parent == NULL)
+		return NULL;
+
+
+	if (parent->childPtr == NULL) {
+		parent->childPtr = newNode;
+	}
+	else {
+		NODE* sibling = parent->childPtr;
+		while (sibling->sibingPtr != NULL) {
+			sibling = sibling->sibingPtr;
+		}
+		sibling->sibingPtr = newNode;
+	}
+	return parent;
 }
 
 

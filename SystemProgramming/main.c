@@ -29,7 +29,7 @@ void switchTask2()
 		index = findCmd(command);
 
 		switch (index) {
-			case 0: root->sibingPtr= mkdir(pathname); break;
+			case 0: mkdir(root,pathname); break;
 			case 1: ls(root->sibingPtr); break;
 			case 2:
 				cwd->childPtr = cd(root, pathname);
@@ -38,7 +38,7 @@ void switchTask2()
 				break;
 			case 3: pwd(valueOFCurrent); break;
 			case 4: root->sibingPtr= creat(pathname); break;
-			case 5: rm(pathname); break;
+			case 5: rm(root,pathname); break;
 			case 6: reload(root); break;
 			case 7: save(root,0); break;
 			case 8: menu(pathname); break;

@@ -43,16 +43,19 @@ NODE* initialize() {
 	//free(base);
 	return base;
 }
-NODE* mkdir(char*  cmd) {
-	NODE* nodeCreate,* node;
-	nodeCreate = creatNode(cmd);
-	node= sibingInsert(nodeCreate);
-	dispalyRoot(node);
-	return node;
+NODE* mkdir(NODE* root,char*  cmd) {
+	//NODE* nodeCreate;
+	//nodeCreate = creatNode(cmd);
+	//root->sibingPtr=sibingInsert(nodeCreate);
+	
+	//root->sibingPtr = nodeCreate;
+	//dispalyRoot(root);
+	return insert(root, cmd);
 }
 void rmdir(char*  cmd) {
 
 }
+
 void ls(NODE* node) {
 	NODE* nodeCh = listDir(node);
 	printf("\n");
@@ -64,8 +67,12 @@ NODE* creat(char*  cmd) {
 	dispalyRoot(node);
 	return node;
 }
-void rm(char*  cmd) {
 
+
+NODE* rm(NODE* root, char* data) {
+	NODE* nodeCh = listDir(root);
+	
+	return root;
 }
 void pwd(char* path) {
 	printf("%s\n",path);
