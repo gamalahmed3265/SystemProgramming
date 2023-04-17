@@ -1,2 +1,4 @@
 ﻿  SystemProgramming.cpp
+C:\Projects\problem solving\SystemProgramming\SystemProgramming\task2\orders.c(136,20): warning C4018: '<': signed/unsigned mismatch
+C:\Projects\problem solving\SystemProgramming\SystemProgramming\task2\tree.c(72): warning C4715: 'listDir': not all control paths return a value
   SystemProgramming.vcxproj -> C:\Projects\problem solving\SystemProgramming\Debug\SystemProgramming.exe

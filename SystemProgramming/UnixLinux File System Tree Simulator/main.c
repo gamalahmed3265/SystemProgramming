@@ -4,14 +4,12 @@
 #include "orders.c"
 using namespace std;
 
-void switchTask2()
+void mainTaks2()
 {
 	NODE* root,*cwd;
 	int index;
 	char
-		//line[128],
-		command[16],
-		pathname[64];
+		command[16];
 	char*
 		valueOFCurrent;
 		//root= initialize();
@@ -24,26 +22,24 @@ void switchTask2()
 		valueOFCurrent = cwd->val;
 		printf("%s $ ", valueOFCurrent);
 	
-		cin >> command >> pathname;
+		cin >> command;
 
 		index = findCmd(command);
-
 		switch (index) {
-			case 0: mkdir(root,pathname); break;
-			case 1: ls(root->sibingPtr); break;
+			case 0: mkdir(root); break;
+			case 1: ls(cwd); break;
 			case 2:
-				cwd->childPtr = cd(root, pathname);
-				valueOFCurrent = AppendStrings(valueOFCurrent, cwd->childPtr->val);
-				//cout<< <<endl;
+				cwd = cd(root);
+				valueOFCurrent = AppendStrings(valueOFCurrent, cwd->val);
 				break;
 			case 3: pwd(valueOFCurrent); break;
-			case 4: root->sibingPtr= creat(pathname); break;
-			case 5: rm(root,pathname); break;
+			case 4:  creat(root); break;
+			case 5: rm(root); break;
 			case 6: reload(root); break;
 			case 7: save(root,0); break;
-			case 8: menu(pathname); break;
-			case 9: rmdir(pathname); break;
-			case 10: quit(pathname); break;
+			case 8: menu(); break;
+			case 9: rmdir(); break;
+			case 10: quit(); break;
 			default: printf("invalid command % s\n",command);//
 		}
 	}

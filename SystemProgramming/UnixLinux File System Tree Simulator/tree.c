@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include <fstream>
 #include <vector>
+#include <iostream>
+
+#include <iostream>
+
 #pragma warning(disable : 4996)
+
+using namespace std;
+
 typedef struct node {
 	char*  val;
 	struct node* childPtr;
@@ -28,22 +35,27 @@ NODE* creatNode(char*  val)
 	return results;
 }
 
-NODE* childInsert(NODE* node)
+NODE* childInsert(NODE* node, char* val)
 {
 	if (node == NULL)
 		return NULL;
-	node->childPtr = childInsert(node->childPtr);
+	node->childPtr = childInsert(node->childPtr,val);
 	
 	return node;
 }
-NODE* changeDir(NODE* node)
-{
+NODE* changeDir(NODE* node){
 
 	if (node == NULL)
 		return NULL;
-	/*node->sibingPtr = changeDir(node->sibingPtr);
-	printf("nodeIN: %s\n", node->val);*/
-	return node->sibingPtr;
+	//changeDir(node->val);
+		cout << changeDir(node)->val;
+	//printf();
+	/*if (node->val == pathname)
+		return node;
+	else
+		return changeDir(node->sibingPtr);*/
+
+	
 }
 
 NODE* listDir(NODE* node)
@@ -53,7 +65,6 @@ NODE* listDir(NODE* node)
 	node->sibingPtr = listDir(node->sibingPtr);
 	printf("%s\t", node->val);
 	//cout << "\t" << node->val;
-	return node;
 }
 
 NODE* sibingInsert(NODE* node)
@@ -65,23 +76,25 @@ NODE* sibingInsert(NODE* node)
 	return node;
 }
 
-NODE* insert(NODE* parent, char* value) {
+NODE* insert(NODE* parent,char*pathname) {
 	NODE* newNode;
-	newNode = creatNode(value);
+	newNode = creatNode(pathname);
 
 	if (parent == NULL)
 		return NULL;
 
 
-	if (parent->childPtr == NULL) {
-		parent->childPtr = newNode;
+	if (parent->sibingPtr == NULL) {
+		parent->sibingPtr = newNode;
 	}
 	else {
-		NODE* sibling = parent->childPtr;
+		NODE* sibling = parent->sibingPtr;
 		while (sibling->sibingPtr != NULL) {
 			sibling = sibling->sibingPtr;
 		}
+		sibling->val = pathname;
 		sibling->sibingPtr = newNode;
+		
 	}
 	return parent;
 }
@@ -101,10 +114,10 @@ void dispalyRoot__level(NODE* root,int level) {
 	printTaps(level);
 	printf("value is: %s\n",root->val);
 
-	printTaps(level);
+	/*printTaps(level);
 	printf("Child : \n");
 	dispalyRoot__level(root->childPtr, level+1);
-
+*/
 	printTaps(level);
 
 	printf("Sibing : \n");

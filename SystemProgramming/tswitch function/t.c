@@ -38,7 +38,8 @@ int kexit()
 	running->status = FREE;
 	running->priority = 0;
 	enqueue(&freeList, running);
-	printList("freeList", freeList);
+	char freeMesg []= "freeList";
+	printList(freeMesg, freeList);
 	tswitch();
 }
 int do_kfork()
@@ -48,7 +49,8 @@ int do_kfork()
 		printf("kfork failed\n");
 	else {
 		printf("proc %d kforked a child = %d\n", running->pid, child);
-		printList("readyQueue", readyQueue);
+		char readMsg[] = "readyQueue";
+		printList(readMsg, readyQueue);
 	}
 	return child;
 }
@@ -56,7 +58,7 @@ int do_switch()
 {
 	tswitch();
 }
-int do_exit
+int do_exit()
 {
 kexit();
 }
@@ -96,11 +98,12 @@ int init()
 	p = running = dequeue(&freeList); // use proc[0]
 	p->status = READY;
 	p->ppid = 0; // P0 is its own parent
-	printList("freeList", freeList);
+	char freemsg[] = "freeList";
+	printList(freemsg, freeList);
 	printf("init complete: P0 running\n");
 }
 /*************** main() function ***************/
-int main()
+int mainTask3()
 {
 	printf("Welcome to the MT Multitasking System\n");
 	init(); // initialize system; create and run P0
@@ -117,7 +120,17 @@ int scheduler()
 	printf("proc %d in scheduler()\n", running->pid);
 	if (running->status == READY)
 		enqueue(&readyQueue, running);
-	printList("readyQueue", readyQueue);
+	char readMsg[] = "readyQueue";
+	printList(readMsg, readyQueue);
 	running = dequeue(&readyQueue);
 	printf("next running = %d\n", running->pid);
+}
+
+void tswitch() {
+	scheduler();
+	PROC* p = dequeue(&freeList);
+	if (!p) {
+		printf("no more proc\n");
+		return(-1);
+	}
 }

@@ -32,10 +32,7 @@ const char*  message[] = {
 const char*  cmds[] = {
 	"mkdir","ls", "cd", "pwd", "touch", "rm",
 "reload", "save", "menu",  "rmdir","quit", "Null" };
-//
-//int getLength(char*  arr[] ) {
-	//return int(sizeof(arr) / sizeof(arr[0]));
-//}
+
 NODE* initialize() {
 	char  homeUrl[] = "~";
 	NODE* base= creatNode(homeUrl);
@@ -43,33 +40,36 @@ NODE* initialize() {
 	//free(base);
 	return base;
 }
-NODE* mkdir(NODE* root,char*  cmd) {
-	//NODE* nodeCreate;
-	//nodeCreate = creatNode(cmd);
-	//root->sibingPtr=sibingInsert(nodeCreate);
-	
-	//root->sibingPtr = nodeCreate;
-	//dispalyRoot(root);
-	return insert(root, cmd);
-}
-void rmdir(char*  cmd) {
+NODE* mkdir(NODE* root) {
+	char pathname[128];
+	fgets(pathname, 128, stdin); // get at most 128 chars from stdin
+	pathname[strlen(pathname) - 1] = 0;
 
+	return insert(root, pathname);
+}
+void rmdir() {
+	char
+		pathname[64];
+	cin >> pathname;
+	cout << pathname;
 }
 
 void ls(NODE* node) {
+	/*cout << node->val<<endl;
+	cout << "sdfsf";*/
 	NODE* nodeCh = listDir(node);
 	printf("\n");
 }
-NODE* creat(char*  cmd) {
-	NODE* nodeCreate, * node;
-	nodeCreate = creatNode(cmd);
-	node = sibingInsert(nodeCreate);
-	dispalyRoot(node);
-	return node;
+NODE* creat(NODE* root) {
+	char pathname[128];
+	fgets(pathname, 128, stdin); // get at most 128 chars from stdin
+	pathname[strlen(pathname) - 1] = 0;
+
+	return insert(root, pathname);
 }
 
 
-NODE* rm(NODE* root, char* data) {
+NODE* rm(NODE* root) {
 	NODE* nodeCh = listDir(root);
 	
 	return root;
@@ -77,16 +77,7 @@ NODE* rm(NODE* root, char* data) {
 void pwd(char* path) {
 	printf("%s\n",path);
 }
-NODE* cd(NODE* node, char*  cmd) {
-	
-	//if (cmd==node->val) {
-	//	printf("good val: %s\n", node->val);
-	//	return node;
-	//}
-	//printf("val: %s\n", node->val);
-		/*printf("change %s\n", ->val);
-		printf("val: %s\n", node->val);
-		printf("node: %s\n", cmd);*/
+NODE* cd(NODE* node) {
 	return changeDir(node);
 }
 void reload(NODE* node) {
@@ -94,14 +85,13 @@ void reload(NODE* node) {
 }
 void save(NODE* root,int level) {
 	
-	string fileName = "savetree.txt", line = "";
+	string fileName = "UnixLinux File System Tree Simulator/savetree.txt", line = "";
 	fstream file;
 	//writeRoot(node);
 	file.open(fileName);
 	if (file.fail()) {
 		cout << "File faild to open" << endl;
 	}
-
 	if (root == NULL) {
 
 		return;
@@ -125,18 +115,18 @@ void save(NODE* root,int level) {
 	line.append("Sibing : \n");
 	save(root->sibingPtr, level + 1);
 
-	line.append("done.....\n");
+	line.append("save |||| .....\n");
 	file << line;
 	file.close();
 }
-void menu(char*  cmd) {
+void menu() {
 	//getLength(message)
-	for (int i = 0; i < 11; i++){
+	for (int i = 0; i < size(message); i++){
 		printf("\t%s\n", message[i]);
 		//cout << "\t" << message[i];
 	}
 }
-void quit(char*  cmd) {
+void quit() {
 	exit(0);
 }
 
@@ -172,6 +162,13 @@ char* AppendStrings(char* a,char* b)
 	return a;
 }
 
+//char getUserInput() {
+//	char line[128];
+//	fgets(line, 128, stdin); // get at most 128 chars from stdin
+//	line[strlen(line) - 1] = 0;
+//
+//	return line;
+//}
 //
 //char*  tokenizen(char*  line) {
 //	char newchar* [16][64];

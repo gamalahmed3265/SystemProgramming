@@ -27,5 +27,5 @@ int printList(char* name, PROC* p)
 		printf("[%d %d]->", p->pid, p->priority);
 		p = p->next;
 	}
-	printf(“NULL\n”);
+	printf("NULL\n");
 }
