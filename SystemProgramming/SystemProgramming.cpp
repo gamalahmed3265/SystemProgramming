@@ -4,18 +4,17 @@
 #include <iostream>
 #include "static dynamic linking/t.c"
 #include "UnixLinux File System Tree Simulator/main.c"
+#include "Labs/C. Cd and pwd commands/main.cpp"
 //#include "tswitch function/t.c"
 //#include "subreaper process/C3.4.c"
 
 
 using namespace std;
-
-int main()
-{
+void switchTasks() {
 	int taskNum;
-	cout << "Enter Task's Number"<<endl;
+	cout << "Enter Task's Number" << endl;
 	cin >> taskNum;
-	switch (taskNum){
+	switch (taskNum) {
 	case 1:
 		mainTask1();
 		break;
@@ -29,9 +28,14 @@ int main()
 		//mainTask4();
 		break;
 	default:
-		cout << "invalid number of task"<<endl;
+		cout << "invalid number of task" << endl;
 		break;
 	}
+
+}
+int main(){
+	//switchTasks();
+	cCdandPwdCommands();
 
 }
 
