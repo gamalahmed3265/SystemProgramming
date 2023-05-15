@@ -5,6 +5,8 @@
 #include "static dynamic linking/t.c"
 #include "UnixLinux File System Tree Simulator/main.c"
 #include "Labs/C. Cd and pwd commands/main.cpp"
+#include "Labs/B. Processing Queries/main.cpp"
+#include "Labs/E. Easy Scheduling/main.cpp"
 //#include "tswitch function/t.c"
 //#include "subreaper process/C3.4.c"
 
@@ -35,7 +37,9 @@ void switchTasks() {
 }
 int main(){
 	//switchTasks();
-	cCdandPwdCommands();
+	//cCdandPwdCommands();
+	//bProcessingQueries();
+	eEasyScheduling();
 
 }
 

@@ -1,4 +1,4 @@
-n = int(raw_input())
+n = int(input())
 
 cur = []
 
@@ -22,7 +22,7 @@ def process(cmd, cur):
 
 while n > 0:
     n -= 1
-    c = raw_input()
+    c = input()
     if c == "pwd":
         pwd(cur)
     else:

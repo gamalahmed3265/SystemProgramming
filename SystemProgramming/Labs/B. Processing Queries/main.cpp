@@ -15,7 +15,7 @@ struct task
     ll t,d,f;
 };
 
-int main()
+int bProcessingQueries()
 {
     //freopen("in.txt","r",stdin);
 
